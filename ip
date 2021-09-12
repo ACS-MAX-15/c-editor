@@ -1,0 +1,82 @@
+# -*- coding: utf-8 -*-
+
+import urllib
+import urllib2
+import json
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
+class SendUrl(object):
+
+    def send_url(self, url, headers, data=None):
+        opener = urllib2.build_opener()
+        request = urllib2.Request(url, data=data, headers=headers)
+        response = opener.open(request, timeout=10)
+        js = json.loads(response.read().decode("utf-8"))
+        print(type(js))
+        #print(dir(js))
+        #print(js)
+        print("================================================")
+        print('位置：'+ js['content']['address_detail']['province'] + js['content']['address_detail']['city'])
+        print('纬度：'+ js['content']['point']['y'])
+        print('经度：'+ js['content']['point']['x'])
+        print('节点：'+ js['address'])
+        print("================================================")
+
+
+def Main():
+    # ak 需自行注册
+    ak = "xxxxxxxxxxxxxxxxxxxxxxxxx"
+    sx = SendUrl()
+
+    url = "https://api.map.baidu.com/location/ip"
+    data = {"ip": "36.101.234.14", "ak": ak, "coor": "bd09ll"}
+    headers = {
+        'User-Agent': "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"}
+    sx.send_url(url, headers, data=urllib.urlencode(data))
+
+
+if __name__ == '__main__':
+    Main()# -*- coding: utf-8 -*-
+
+
+import urllib
+import urllib2
+import json
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
+class SendUrl(object):
+
+    def send_url(self, url, headers, data=None):
+        opener = urllib2.build_opener()
+        request = urllib2.Request(url, data=data, headers=headers)
+        response = opener.open(request, timeout=10)
+        js = json.loads(response.read().decode("utf-8"))
+        print(type(js))
+        #print(dir(js))
+        #print(js)
+        print("================================================")
+        print('位置：'+ js['content']['address_detail']['province'] + js['content']['address_detail']['city'])
+        print('纬度：'+ js['content']['point']['y'])
+        print('经度：'+ js['content']['point']['x'])
+        print('节点：'+ js['address'])
+        print("================================================")
+
+
+def Main():
+    # ak 需自行注册
+    ak = "xxxxxxxxxxxxxxxxxxxxxxxxx"
+    sx = SendUrl()
+
+    url = "https://api.map.baidu.com/location/ip"
+    data = {"ip": "36.101.234.14", "ak": ak, "coor": "bd09ll"}
+    headers = {
+        'User-Agent': "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"}
+    sx.send_url(url, headers, data=urllib.urlencode(data))
+
+
+if __name__ == '__main__':
+    Main()
